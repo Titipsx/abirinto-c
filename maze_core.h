@@ -32,8 +32,8 @@ static int maze_can_move(Maze *m, int x, int y, int direction) {
 }
 
 static void maze_generate(Maze *m, int cols, int rows) {
-    int visited[MAX_ROWS][MAX_COLS];
-    int stack_x[MAX_CELLS], stack_y[MAX_CELLS];
+    static int visited[MAX_ROWS][MAX_COLS];
+    static int stack_x[MAX_CELLS], stack_y[MAX_CELLS];
     int x, y, nx, ny, top, i, count, direction, choices[4];
 
     m->cols = cols;
@@ -80,10 +80,10 @@ static void maze_generate(Maze *m, int cols, int rows) {
 /* BFS: restituisce la lunghezza minima; path_dir può essere NULL. */
 static int maze_shortest_path(Maze *m, int sx, int sy, int ex, int ey,
                               int *path_dir, int max_path) {
-    int qx[MAX_CELLS], qy[MAX_CELLS];
-    int previous[MAX_ROWS][MAX_COLS];
-    int distance[MAX_ROWS][MAX_COLS];
-    int reverse[MAX_CELLS];
+    static int qx[MAX_CELLS], qy[MAX_CELLS];
+    static int previous[MAX_ROWS][MAX_COLS];
+    static int distance[MAX_ROWS][MAX_COLS];
+    static int reverse[MAX_CELLS];
     int head = 0, tail = 0, x, y, nx, ny, d, p, length = 0, i;
 
     for (y = 0; y < m->rows; ++y)
