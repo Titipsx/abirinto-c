@@ -1,0 +1,11 @@
+LABIRINTO PYTHON / PYGAME - VERSIONE WEB OFFLINE
+
+1. Estrai completamente il contenuto dello ZIP.
+2. Fai doppio clic su AVVIA.bat.
+3. Il gioco si aprirà automaticamente nel browser.
+4. Lascia aperta la finestra nera mentre giochi.
+5. Per terminare, chiudi la finestra oppure premi Ctrl+C.
+
+Non servono Python, Pygame o una connessione Internet.
+Il gioco eseguito è lo stesso main.py della versione pubblicata online.
+
