@@ -1,0 +1,42 @@
+name: Compila eseguibili C
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Compila Windows
+        shell: cmd
+        run: cl /nologo /O2 /W3 windows\labirinto_windows.c user32.lib gdi32.lib /Fe:LABIRINTO-WINDOWS.exe
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Labirinto-Windows
+          path: LABIRINTO-WINDOWS.exe
+
+  dos:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: open-watcom/setup-watcom@v0
+
+      - name: Compila DOS 16 bit
+        shell: cmd
+        run: wcl -q -0 -ms -bt=dos -fe=LABIRINT.EXE dos\labirinto_dos.c
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Labirinto-DOS
+          path: LABIRINT.EXE
